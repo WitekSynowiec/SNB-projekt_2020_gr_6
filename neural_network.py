@@ -8,7 +8,7 @@ def sigmoid(x):
 
 # Funkcja pochodna
 def sigmoid_der(x):
-    return sigmoid(x)(1-sigmoid(x))
+    return sigmoid(x)*(1-sigmoid(x))
 
 
 # Wczytywanie danych z pliku data i zapisanie do struktury data
@@ -22,8 +22,6 @@ np.random.seed(1)
 wih = 2 * np.random.random(np.size(data,1)) - 1
 # Wagi początkowe warstwy ukrytej
 whj = 2 * np.random.random(np.size(data,1)) - 1
-
-# print(pd.DataFrame(wih))
 
 # Losowy wektor uczący
 vec = data[np.random.randint(0, np.size(data,0))]
@@ -43,7 +41,7 @@ yki = sigmoid(netki)
 
 # Oblicz sygnał błędu δ dla warstwy wyjściowej
 delki = (vec[0]-yki)*sigmoid_der(netki)
+print(pd.DataFrame(delki))
 
 # Wsteczna propagacja błędów
-# Ek = np.linalg.norm
 

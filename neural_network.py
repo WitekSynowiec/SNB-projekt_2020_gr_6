@@ -16,6 +16,8 @@ def sigmoid_der(x):
 def neuralNetwork(data, wih, whj, eta):
     # Losowy wektor uczący
     vec = data[np.random.randint(0, np.size(data, 0))]
+    vec0 = vec[0]
+    np.delete(vec, 0, 0)
 
     # Pobudzenia neuronów warstwy ukrytej
     netkh = np.multiply(whj, vec)
@@ -31,7 +33,7 @@ def neuralNetwork(data, wih, whj, eta):
     yki = sigmoid(netki)
 
     # Sygnał błędu δ dla warstwy wyjściowej
-    delki = (vec[0] - yki) * sigmoid_der(netki)
+    delki = (vec0 - yki) * sigmoid_der(netki)
 
     # Sygnał błędu δ dla warstwy wyjściowej. Wsteczna propagacja błędów
     delkh = sigmoid_der(netkh) * np.multiply(wih, delki)
@@ -64,4 +66,12 @@ eta = 0.05
 for x in range(100000):
     [data, wih, whj, eta] = neuralNetwork(data, wih, whj, eta)
 
+
+# #1
+vec = data[6]
+w1 = np.multiply(whj, vec)
+print(pd.DataFrame(w1))
+
+w2 = wih*w1
+print(pd.DataFrame(w2))
 

@@ -10,7 +10,7 @@ def sigmoid(x):
 # Wczytywanie danych z pliku data i zapisanie do struktury data
 data = np.genfromtxt('data.csv', delimiter=',')
 data = np.delete(data, 0, 0)
-print(pd.DataFrame(data))
+# print(pd.DataFrame(data))
 
 # Ustawienie małuch, losowych wag z przedziału [-1,1]
 np.random.seed(1)
@@ -24,4 +24,18 @@ whj = 2 * np.random.random(np.size(data,1)) - 1
 # Losowy wektor uczący
 vec = data[np.random.randint(0, np.size(data,0))]
 
-print(vec)
+# Pobudzenia neuronów warstwy ukrytej
+netkh = np.multiply(whj, vec)
+# print(pd.DataFrame(netkh))
+
+# Stan wyjść neuronów warstwy ukrytej
+ykh = sigmoid(netkh)
+
+# Pobudzenia neuronów warstwy wyjściowej
+netki = np.multiply(wih, ykh)
+
+# Stan wyjść neuronów warstwy wyjściowej
+yki = sigmoid(netki)
+
+# Oblicz sygnał błędu δ dla warstwy wyjściowej
+# δki

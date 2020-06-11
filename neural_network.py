@@ -42,7 +42,7 @@ def neuralNetwork(data, wih, whj, eta):
     # Modyfikacja wagi warstwy ukrytej:
     whj = whj + eta * delkh * vec
 
-    return [data, wih, whj, eta, yki]
+    return [data, wih, whj, eta]
 
 
 # Wczytywanie danych z pliku data i zapisanie do struktury data
@@ -63,3 +63,5 @@ eta = 0.05
 # TODO: testy sieci, czy dobrze wyrzuca wagi
 for x in range(100000):
     [data, wih, whj, eta] = neuralNetwork(data, wih, whj, eta)
+
+

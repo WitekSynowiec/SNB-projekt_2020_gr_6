@@ -6,6 +6,10 @@ import pandas as pd
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
+# Funkcja pochodna
+def sigmoid_der(x):
+    return sigmoid(x)(1-sigmoid(x))
+
 
 # Wczytywanie danych z pliku data i zapisanie do struktury data
 data = np.genfromtxt('data.csv', delimiter=',')
@@ -38,4 +42,8 @@ netki = np.multiply(wih, ykh)
 yki = sigmoid(netki)
 
 # Oblicz sygnał błędu δ dla warstwy wyjściowej
-# δki
+delki = (vec[0]-yki)*sigmoid_der(netki)
+
+# Wsteczna propagacja błędów
+# Ek = np.linalg.norm
+

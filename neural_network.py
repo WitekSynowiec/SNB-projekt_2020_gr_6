@@ -39,9 +39,10 @@ netki = np.multiply(wih, ykh)
 # Stan wyjść neuronów warstwy wyjściowej
 yki = sigmoid(netki)
 
-# Oblicz sygnał błędu δ dla warstwy wyjściowej
+# Sygnał błędu δ dla warstwy wyjściowej
 delki = (vec[0]-yki)*sigmoid_der(netki)
 print(pd.DataFrame(delki))
 
-# Wsteczna propagacja błędów
+# Sygnał błędu δ dla warstwy wyjściowej. Wsteczna propagacja błędów
+delkh = sigmoid_der(netkh)*np.multiply(wih, delki)
 

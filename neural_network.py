@@ -16,6 +16,8 @@ data = np.genfromtxt('data.csv', delimiter=',')
 data = np.delete(data, 0, 0)
 # print(pd.DataFrame(data))
 
+eta = 0.05
+
 # Ustawienie małuch, losowych wag z przedziału [-1,1]
 np.random.seed(1)
 # Wagi początkowe warstwy wejściowej
@@ -41,8 +43,15 @@ yki = sigmoid(netki)
 
 # Sygnał błędu δ dla warstwy wyjściowej
 delki = (vec[0]-yki)*sigmoid_der(netki)
-print(pd.DataFrame(delki))
 
 # Sygnał błędu δ dla warstwy wyjściowej. Wsteczna propagacja błędów
 delkh = sigmoid_der(netkh)*np.multiply(wih, delki)
+
+# Modyfikacja wagi warstwy wyjściowej:
+wih = wih + eta*delki*ykh
+
+# Modyfikacja wagi warstwy ukrytej:
+whj = whj + eta*delkh*vec
+
+
 

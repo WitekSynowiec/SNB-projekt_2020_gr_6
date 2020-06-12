@@ -41,7 +41,7 @@ def neuralNetwork(data, wih, whj, eta):
     # Modyfikacja wagi warstwy ukrytej:
     whj = whj + eta * delkh * vec
 
-    return [data, wih, whj, eta, ykh, yki]
+    return [data, wih, whj, eta]
 
 
 
@@ -56,12 +56,10 @@ whj = 2 * np.random.rand(np.size(data, 1) - 1, np.size(data, 1) - 1) - 1
 # Wagi początkowe warstwy wyjściowej (15 wag)
 wih = 2 * np.random.random(np.size(data, 1) - 1) - 1
 
-eta = 0.8
-ykh = 0
-yki = 0
+eta = 0.05
 
 for x in range(100000):
-    [data, wih, whj, eta, ykh, yki] = neuralNetwork(data, wih, whj, eta)
+    [data, wih, whj, eta] = neuralNetwork(data, wih, whj, eta)
 
 c=0
 for ii in range(100):

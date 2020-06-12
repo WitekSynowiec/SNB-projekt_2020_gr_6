@@ -23,7 +23,7 @@ def neuralNetwork(data, wih, whj, eta):
     ykh = expit(netkh)
 
     # Pobudzenia neuronów warstwy wyjściowej
-    netki = np.dot(wih, ykh.transpose())
+    netki = np.dot(wih, ykh)
 
     # Stan wyjść neuronów warstwy wyjściowej
     yki = expit(netki)
@@ -43,6 +43,8 @@ def neuralNetwork(data, wih, whj, eta):
     return [data, wih, whj, eta, ykh, yki]
 
 
+
+
 # Wczytywanie danych z pliku data i zapisanie do struktury data
 data = np.genfromtxt('data.csv', delimiter=',')
 data = np.delete(data, 0, 0)
@@ -58,18 +60,34 @@ ykh = 0
 yki = 0
 
 # TODO: testy sieci, czy dobrze wyrzuca wagi
-for x in range(100000):
+for x in range(400000):
     [data, wih, whj, eta, ykh, yki] = neuralNetwork(data, wih, whj, eta)
 
-vec = data[np.random.randint(0, np.size(data, 0))]
-vec0 = vec[0]
-vec = np.delete(vec, 0, 0)
+c=0
+for ii in range(100):
+    vec = data[np.random.randint(0, np.size(data, 0))]
+    vec0 = vec[0]
+    vec = np.delete(vec, 0, 0)
 
-print("Wartość oczekiwana: ")
-print(vec0)
+    print("Wartość oczekiwana: ")
+    print(vec0)
 
-ykhh = expit(np.dot(whj, vec))
+    ykhh = expit(np.dot(whj, vec))
 
-ykii = expit(np.dot(ykhh, wih))
-print("Wartość uzyskana: ")
-print(ykii)
+    ykii = expit(np.dot(ykhh, wih))
+    print("Wartość uzyskana: ")
+    print(ykii)
+
+    print("Werdykt: ")
+    print(round(ykii))
+    if(round(ykii)==vec0):
+        print("Zgadza się.")
+        c=c+1
+        print(ii)
+        print(c)
+    else:
+        print("Nie zgadza się.")
+        print(ii)
+        print(c)
+
+print(c)

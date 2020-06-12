@@ -3,6 +3,7 @@ import pandas as pd
 from scipy.special import expit, logit
 import time
 
+# TODO: testy, testy, testy, może jakaś historia "dobrej klasyfikacji" i wykorzystując dane wykresy z matplotliba, może reformat
 
 # Funkcja pochodna sigmoidy
 def sigmoid_der(xx):
@@ -55,12 +56,11 @@ whj = 2 * np.random.rand(np.size(data, 1) - 1, np.size(data, 1) - 1) - 1
 # Wagi początkowe warstwy wyjściowej (15 wag)
 wih = 2 * np.random.random(np.size(data, 1) - 1) - 1
 
-eta = 0.05
+eta = 0.8
 ykh = 0
 yki = 0
 
-# TODO: testy sieci, czy dobrze wyrzuca wagi
-for x in range(400000):
+for x in range(100000):
     [data, wih, whj, eta, ykh, yki] = neuralNetwork(data, wih, whj, eta)
 
 c=0
@@ -83,11 +83,11 @@ for ii in range(100):
     if(round(ykii)==vec0):
         print("Zgadza się.")
         c=c+1
-        print(ii)
-        print(c)
     else:
         print("Nie zgadza się.")
-        print(ii)
-        print(c)
+    print(ii)
+    print(c)
+    print("###")
 
+print("Ilość dobrze zaklasyfikowanych badań: ")
 print(c)

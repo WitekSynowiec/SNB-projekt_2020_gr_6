@@ -3,6 +3,7 @@ import pandas as pd
 from scipy.special import expit, logit
 import time
 
+
 # Funkcja pochodna sigmoidy
 def sigmoid_der(xx):
     return expit( -xx ) * (1 - expit( -xx ))
@@ -16,9 +17,7 @@ def neuralNetwork(data, wih, whj, eta):
     vec0 = vec[0]
     vec = np.delete( vec, 0, 0 )
 
-
     netkh = np.dot( whj, vec )
-
 
     # Stan wyjść neuronów warstwy ukrytej
     ykh = expit( netkh )
@@ -66,12 +65,11 @@ vec = data[np.random.randint( 0, np.size( data, 0 ) )]
 vec0 = vec[0]
 vec = np.delete( vec, 0, 0 )
 
-print("Wartość oczekiwana: ")
+print( "Wartość oczekiwana: " )
 print( vec0 )
 
 ykhh = expit( np.dot( whj, vec ) )
 
-ykii = expit( np.dot( ykhh, wih) )
-print("Wartość uzyskana: ")
+ykii = expit( np.dot( ykhh, wih ) )
+print( "Wartość uzyskana: " )
 print( ykii )
-
